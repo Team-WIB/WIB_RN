@@ -15,7 +15,7 @@ import { StatusBar } from "expo-status-bar";
 function HomeScreen() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>HomePage</Text>
+      <Text>DetailPage</Text>
     </View>
   );
 }
