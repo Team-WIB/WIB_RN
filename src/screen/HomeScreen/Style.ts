@@ -5,21 +5,24 @@ export const S = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+    flexDirection: "row",
   },
   Radio: {
     paddingVertical: 23,
+    marginVertical: 10,
   },
   List: {
     paddingVertical: 10,
     height: 300,
     flexDirection: "column",
-    gap: 15,
   },
   ListItem: {
     height: 50,
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 20,
+    marginVertical: 7,
+
     borderRadius: 5,
     backgroundColor: theme.itemColor,
   },

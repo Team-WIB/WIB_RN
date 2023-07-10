@@ -17,9 +17,14 @@ import SegmentedControl from "@react-native-segmented-control/segmented-control"
 import { useState } from "react";
 import { S } from "./Style";
 import { theme } from "../../../color";
+import { useQuery } from "react-query";
+import { fetchList } from "../../api/api";
+import { ListType } from "../../types/List";
 
 function HomeScreen() {
   const [isFront, setIsFront] = useState(false);
+  const { data: ListData } = useQuery<ListType>("posts", fetchList);
+
   return (
     <View style={Common.container}>
       <StatusBar style="dark" backgroundColor={"black"} />
@@ -33,17 +38,18 @@ function HomeScreen() {
         tintColor={"white"}
         backgroundColor={theme.itemColor}
       />
-      <View style={S.List}>
-        <View style={S.ListItem}>
-          <Text style={S.ItemText}>react 란 무엇인가요?</Text>
-        </View>
-        <View style={S.ListItem}>
-          <Text style={S.ItemText}>react 란 무엇인가요?</Text>
-        </View>
-        <View style={S.ListItem}>
-          <Text style={S.ItemText}>react 란 무엇인가요?</Text>
-        </View>
-      </View>
+      <ScrollView style={S.List}>
+        {ListData?.questions.map(
+          (i) =>
+            isFront === (i.tag === "FE") && (
+              <>
+                <View style={S.ListItem} key={i.id}>
+                  <Text style={S.ItemText}>{i.question}</Text>
+                </View>
+              </>
+            )
+        )}
+      </ScrollView>
     </View>
   );
 }

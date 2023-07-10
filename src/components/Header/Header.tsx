@@ -1,15 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Alert,
-  TouchableOpacity,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
-  Pressable,
-  TextInput,
-  ScrollView,
-} from "react-native";
+import { Text, View } from "react-native";
 import { S } from "./Style";
 
 function Header() {

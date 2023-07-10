@@ -3,11 +3,11 @@ import { theme } from "../../../color";
 
 export const S = StyleSheet.create({
   container: {
-    height: 50,
+    height: 80,
+    paddingHorizontal: 20,
     backgroundColor: theme.bg,
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 20,
   },
   HeaderText: {
     fontSize: 30,
