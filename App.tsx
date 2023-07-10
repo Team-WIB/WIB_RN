@@ -4,23 +4,23 @@ import HomeScreen from "./src/screen/HomeScreen/HomeScreen";
 import DetailScreen from "./src/screen/DetailScreen/DetailScreen";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-const Tab = createStackNavigator();
+const Stack = createStackNavigator();
 const queryClient = new QueryClient();
 
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
-        <Tab.Navigator
+        <Stack.Navigator
           initialRouteName="Home"
           screenOptions={() => {
             return { headerShown: false };
           }}
         >
-          <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="Detail" component={DetailScreen} />
-          <Tab.Screen name="Settings" component={DetailScreen} />
-        </Tab.Navigator>
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Detail" component={DetailScreen} />
+          <Stack.Screen name="Settings" component={DetailScreen} />
+        </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>
   );

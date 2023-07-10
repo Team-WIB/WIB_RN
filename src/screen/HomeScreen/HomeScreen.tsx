@@ -1,15 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Alert,
-  TouchableOpacity,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
-  Pressable,
-  TextInput,
-  ScrollView,
-} from "react-native";
+import { Text, View, ScrollView, TouchableOpacity } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Header from "../../components/Header/Header";
 import { Common } from "../../components/Common/Style";
@@ -20,10 +9,22 @@ import { theme } from "../../../color";
 import { useQuery } from "react-query";
 import { fetchList } from "../../api/api";
 import { ListType } from "../../types/List";
+import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, ParamListBase } from "@react-navigation/native";
+
+type RootStackParamList = {
+  Detail: {
+    id: number;
+  };
+  // 다른 화면들도 추가해줄 수 있습니다.
+};
+
+type DetailsScreenNavigationProp = NavigationProp<RootStackParamList>;
 
 function HomeScreen() {
   const [isFront, setIsFront] = useState(false);
   const { data: ListData } = useQuery<ListType>("posts", fetchList);
+  const navigation: DetailsScreenNavigationProp = useNavigation();
 
   return (
     <View style={Common.container}>
@@ -43,9 +44,15 @@ function HomeScreen() {
           (i) =>
             isFront === (i.tag === "FE") && (
               <>
-                <View style={S.ListItem} key={i.id}>
+                <TouchableOpacity
+                  style={S.ListItem}
+                  key={i.id}
+                  onPress={() =>
+                    navigation.navigate("Detail", { id: 123 } as never)
+                  }
+                >
                   <Text style={S.ItemText}>{i.question}</Text>
-                </View>
+                </TouchableOpacity>
               </>
             )
         )}

@@ -1,18 +1,6 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Alert,
-  TouchableOpacity,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
-  Pressable,
-  TextInput,
-  ScrollView,
-} from "react-native";
-import { StatusBar } from "expo-status-bar";
+import { Text, View } from "react-native";
 
-function HomeScreen() {
+function DetailScreen() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>DetailPage</Text>
@@ -20,4 +8,4 @@ function HomeScreen() {
   );
 }
 
-export default HomeScreen;
+export default DetailScreen;
