@@ -23,7 +23,6 @@ export const S = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     marginVertical: 7,
-
     borderRadius: 5,
     backgroundColor: theme.itemColor,
   },

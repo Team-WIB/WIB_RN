@@ -20,7 +20,7 @@ type RootStackParamList = {
 type DetailsScreenNavigationProp = NavigationProp<RootStackParamList>;
 
 function HomeScreen() {
-  const [isFront, setIsFront] = useState(false);
+  const [isBack, setIsBack] = useState(false);
   const { data: ListData } = useQuery<ListType>('posts', fetchList);
   const navigation: DetailsScreenNavigationProp = useNavigation();
 
@@ -30,7 +30,7 @@ function HomeScreen() {
       <SegmentedControl
         values={['Front', 'Back']}
         selectedIndex={0}
-        onChange={() => setIsFront((pre) => !pre)}
+        onChange={() => setIsBack((pre) => !pre)}
         fontStyle={{ fontSize: 20 }}
         style={S.Radio}
         tintColor={'white'}
@@ -40,7 +40,7 @@ function HomeScreen() {
         {ListData?.questions &&
           ListData?.questions.map(
             (i) =>
-              isFront === (i.tag !== 'FE') && (
+              isBack === (i.tag !== 'FE') && (
                 <>
                   <TouchableOpacity
                     style={S.ListItem}

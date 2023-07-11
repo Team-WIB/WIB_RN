@@ -11,7 +11,6 @@ import { S } from './Style';
 function DetailScreen() {
   const route = useRoute();
   const params = route.params as DetailParams;
-  const { navigate, goBack } = useNavigation();
   const { data } = useQuery<DetailType>('posts', () =>
     fetchListItem(params.id)
   );

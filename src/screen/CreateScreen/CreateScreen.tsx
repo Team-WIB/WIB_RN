@@ -1,53 +1,90 @@
-import { Text, View, TextInput } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import {
+  NavigationProp,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 import { Common } from '../../components/Common/Style';
 import { fetchListItem } from '../../api/api';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { DetailParams, DetailType } from '../../types/Detail';
 import { S } from './Style';
 import Header from '../../components/Header/Header';
 import SegmentedControl from '@react-native-segmented-control/segmented-control';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { theme } from '../../../color';
+import { apiClient } from '../../util/apiClient';
 
 function CreateScreen() {
   const route = useRoute();
   const params = route.params as DetailParams;
-  const [isFront, setIsFront] = useState(false);
+  const [isNotFront, setIsNotFront] = useState(false);
   const [title, setTitle] = useState('');
-  const { navigate, goBack } = useNavigation();
+  const [answerText, setAnswerText] = useState('');
+  const navigation: any = useNavigation();
   const { data } = useQuery<DetailType>('posts', () =>
     fetchListItem(params.id)
   );
+  console.log(isNotFront);
+
+  const ClickSubmitBtn = async () => {
+    try {
+      await apiClient.post('/questions', {
+        question: title,
+        answer: answerText,
+        tag: isNotFront ? 'BE' : 'FE',
+      });
+      Alert.alert('글이 생성되었습니다');
+      setTitle('');
+      setAnswerText('');
+      navigation.navigate('Home');
+      const addMutation = useMutation((value) => fetch(`questions`));
+      addMutation.mutate();
+    } catch (e: any) {
+      console.log(e.message);
+    }
+  };
+
+  useEffect(() => {
+    if (params?.id) {
+      setTitle(data?.question.question ?? '');
+      setAnswerText(data?.question.answer ?? '');
+    }
+  }, []);
 
   const onChangeText = (payload: string) => setTitle(payload);
+  const onChangeAnswerText = (payload: string) => setAnswerText(payload);
 
   return (
     <View style={Common.container}>
       <Header />
       <TextInput
-        onChangeText={onChangeText}
-        returnKeyType="done"
         value={title}
-        placeholder={'질문을 입력해주세요'}
         style={S.input}
+        returnKeyType="done"
+        onChangeText={onChangeText}
+        placeholder={'질문을 입력해주세요'}
       />
       <SegmentedControl
-        values={['Front', 'Back']}
-        selectedIndex={0}
-        onChange={() => setIsFront((pre) => !pre)}
-        fontStyle={{ fontSize: 20 }}
         style={S.Radio}
+        selectedIndex={0}
         tintColor={'white'}
+        values={['Front', 'Back']}
+        fontStyle={{ fontSize: 20 }}
         backgroundColor={theme.itemColor}
+        onChange={() => setIsNotFront((pre) => !pre)}
       />
       <TextInput
-        style={S.textArea}
         multiline={true}
         numberOfLines={4}
-        placeholder="답변을 입력하세요..."
+        style={S.textArea}
+        returnKeyType="done"
+        placeholder="답변을 입력하세요"
+        onChangeText={onChangeAnswerText}
       />
-      <Text>생성페이지</Text>
+      <TouchableOpacity style={S.SubmitBtn} onPress={ClickSubmitBtn}>
+        <Text style={S.SubmitBtnText}>생성하기</Text>
+      </TouchableOpacity>
     </View>
   );
 }
