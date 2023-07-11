@@ -9,3 +9,7 @@ export interface DetailType {
   answer: string;
   tag: string;
 }
+
+export interface DetailParams {
+  id: number;
+}

@@ -10,7 +10,7 @@ import { useQuery } from "react-query";
 import { fetchList } from "../../api/api";
 import { ListType } from "../../types/List";
 import { useNavigation } from "@react-navigation/native";
-import { NavigationProp, ParamListBase } from "@react-navigation/native";
+import { NavigationProp } from "@react-navigation/native";
 
 type RootStackParamList = {
   Detail: {
@@ -40,22 +40,21 @@ function HomeScreen() {
         backgroundColor={theme.itemColor}
       />
       <ScrollView style={S.List}>
-        {ListData?.questions.map(
-          (i) =>
-            isFront === (i.tag === "FE") && (
-              <>
-                <TouchableOpacity
-                  style={S.ListItem}
-                  key={i.id}
-                  onPress={() =>
-                    navigation.navigate("Detail", { id: 123 } as never)
-                  }
-                >
-                  <Text style={S.ItemText}>{i.question}</Text>
-                </TouchableOpacity>
-              </>
-            )
-        )}
+        {ListData?.questions &&
+          ListData?.questions.map(
+            (i) =>
+              isFront === (i.tag === "FE") && (
+                <>
+                  <TouchableOpacity
+                    style={S.ListItem}
+                    key={i.id}
+                    onPress={() => navigation.navigate("Detail", { id: i.id })}
+                  >
+                    <Text style={S.ItemText}>{i.question}</Text>
+                  </TouchableOpacity>
+                </>
+              )
+          )}
       </ScrollView>
     </View>
   );
