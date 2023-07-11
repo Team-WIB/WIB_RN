@@ -9,25 +9,24 @@ export const S = StyleSheet.create({
     paddingLeft: 30,
     paddingBottom: 20,
   },
-  question: {
-    fontSize: 40,
-    color: 'white',
-    fontWeight: '600',
+  Radio: {
+    paddingVertical: 23,
+    marginVertical: 10,
   },
-  tag: {
-    fontSize: 20,
-    color: 'white',
+  input: {
+    backgroundColor: 'white',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    marginVertical: 20,
+    fontSize: 18,
   },
-  answerView: {
-    flex: 5.5,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: theme.itemColor,
-  },
-  answer: {
-    fontSize: 20,
-    color: 'white',
-    fontWeight: '900',
+  textArea: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    padding: 10,
+    height: 150,
+    textAlignVertical: 'top',
   },
 });

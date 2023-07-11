@@ -17,11 +17,9 @@ function DetailScreen() {
   );
 
   const DetailData = data?.question;
-  console.log(DetailData);
 
   return (
     <View style={Common.container}>
-      <StatusBar style="dark" backgroundColor="black" />
       <DetailHeader />
       <View style={S.topContant}>
         <Text style={S.tag}>{DetailData?.tag}</Text>

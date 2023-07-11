@@ -4,7 +4,7 @@ import { theme } from '../../../color';
 export const S = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     flexDirection: 'row',
   },
   Radio: {

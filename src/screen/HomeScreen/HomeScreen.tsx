@@ -1,5 +1,4 @@
 import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
 import Header from '../../components/Header/Header';
 import { Common } from '../../components/Common/Style';
 import SegmentedControl from '@react-native-segmented-control/segmented-control';
@@ -11,13 +10,11 @@ import { fetchList } from '../../api/api';
 import { ListType } from '../../types/List';
 import { useNavigation } from '@react-navigation/native';
 import { NavigationProp } from '@react-navigation/native';
-import BottomTabNavigationApp from '../../components/Tabs/Tabs';
 
 type RootStackParamList = {
   Detail: {
     id: number;
   };
-  // 다른 화면들도 추가해줄 수 있습니다.
 };
 
 type DetailsScreenNavigationProp = NavigationProp<RootStackParamList>;
@@ -29,7 +26,6 @@ function HomeScreen() {
 
   return (
     <View style={Common.container}>
-      <StatusBar style="dark" backgroundColor={'black'} />
       <Header />
       <SegmentedControl
         values={['Front', 'Back']}
@@ -57,7 +53,6 @@ function HomeScreen() {
               )
           )}
       </ScrollView>
-      {/* <BottomTabNavigationApp /> */}
     </View>
   );
 }
