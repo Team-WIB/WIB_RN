@@ -4,10 +4,14 @@ export interface ListDetailType {
   tag: string;
 }
 
-export interface DetailType {
+export interface DetailItemType {
   question: string;
   answer: string;
   tag: string;
+}
+
+export interface DetailType {
+  question: DetailItemType;
 }
 
 export interface DetailParams {

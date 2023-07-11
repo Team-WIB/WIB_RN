@@ -1,15 +1,16 @@
-import { Text, View } from "react-native";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { View, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { S } from "./Style";
-import { DetailParams } from "../../types/Detail";
+import { AntDesign } from "@expo/vector-icons";
 
 function DetailHeader() {
-  const route = useRoute();
-  const params = route.params as DetailParams;
+  const { goBack } = useNavigation();
 
   return (
     <View style={S.container}>
-      <Text style={S.HeaderText}>WIB</Text>
+      <TouchableOpacity style={S.backText} onPress={goBack}>
+        <AntDesign name="left" size={30} color="white" />
+      </TouchableOpacity>
     </View>
   );
 }

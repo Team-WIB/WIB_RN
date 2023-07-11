@@ -9,7 +9,7 @@ export const S = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  HeaderText: {
+  backText: {
     fontSize: 30,
     color: "white",
     fontWeight: "500",

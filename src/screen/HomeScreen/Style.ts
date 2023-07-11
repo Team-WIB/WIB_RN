@@ -1,25 +1,26 @@
-import { StyleSheet } from "react-native";
-import { theme } from "../../../color";
+import { StyleSheet } from 'react-native';
+import { theme } from '../../../color';
 
 export const S = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
-    flexDirection: "row",
+    backgroundColor: 'white',
+    flexDirection: 'row',
   },
   Radio: {
     paddingVertical: 23,
     marginVertical: 10,
   },
   List: {
+    flex: 8,
     paddingVertical: 10,
     height: 300,
-    flexDirection: "column",
+    flexDirection: 'column',
   },
   ListItem: {
     height: 50,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: 20,
     marginVertical: 7,
 
@@ -28,6 +29,6 @@ export const S = StyleSheet.create({
   },
   ItemText: {
     fontSize: 20,
-    color: "white",
+    color: 'white',
   },
 });

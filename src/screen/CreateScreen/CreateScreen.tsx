@@ -1,14 +1,12 @@
 import { Text, View } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
 import { Common } from '../../components/Common/Style';
 import { fetchListItem } from '../../api/api';
 import { useQuery } from 'react-query';
 import { DetailParams, DetailType } from '../../types/Detail';
-import DetailHeader from '../../components/DetailHeader/DetailHeader';
 import { S } from './Style';
 
-function DetailScreen() {
+function CreateScreen() {
   const route = useRoute();
   const params = route.params as DetailParams;
   const { navigate, goBack } = useNavigation();
@@ -21,17 +19,9 @@ function DetailScreen() {
 
   return (
     <View style={Common.container}>
-      <StatusBar style="dark" backgroundColor="black" />
-      <DetailHeader />
-      <View style={S.topContant}>
-        <Text style={S.tag}>{DetailData?.tag}</Text>
-        <Text style={S.question}>{DetailData?.question}</Text>
-      </View>
-      <View style={S.answerView}>
-        <Text style={S.answer}>{DetailData?.answer}</Text>
-      </View>
+      <Text>생성페이지</Text>
     </View>
   );
 }
 
-export default DetailScreen;
+export default CreateScreen;
